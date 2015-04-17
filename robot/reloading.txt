@@ -1,0 +1,15 @@
+*** Settings ***
+Library           Selenium2Library
+Suite Setup       Open Browser    about:blank    ${BROWSER}
+Test Setup        Go To    ${APP URL}
+Suite Teardown    Close All Browsers
+Resource          variables.txt
+
+Question Should Be Changed When Reload
+    ${first operand}=    Get Text    ${FIRST OPERAND SPAN}
+    ${second operand}=    Get Text    ${SECOND OPERAND SPAN}
+    Reload Page
+    ${new first operand}=     Get Text    ${FIRST OPERAND SPAN}
+    ${new second operand}=    Get Text    ${SECOND OPERAND SPAN}
+    Should Not Be Equal    ${first operand}    ${new first operand}
+    Should Not Be Equal    ${second operand}    ${new second operand}
