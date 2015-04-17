@@ -1,0 +1,25 @@
+{
+  "name": "requirejs-with-karma",
+  "version": "0.0.0",
+  "authors": [
+    "Prayoch Rujira <jay@odd-e.co.th>"
+  ],
+  "main": "index.html",
+  "keywords": [
+    "requirejs",
+    "captcha"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "proxy": "http://10.89.104.33:443",
+  "https-proxy": "http://10.89.104.33:443",
+  "dependencies": {
+    "requirejs": "~2.1.17"
+  }
+}
