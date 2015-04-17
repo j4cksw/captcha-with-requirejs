@@ -1,0 +1,27 @@
+*** Settings ***
+Library           Selenium2Library
+Suite Setup       Open Browser    about:blank    ${BROWSER}
+Test Setup        Go To    ${APP URL}
+Suite Teardown    Close All Browsers
+Resource          variables.txt
+
+*** Test Cases ***
+Wrong Answer Should Stay On Question Page
+    Input Text    answer    3
+    Click Button    submit
+    Location Should Contain    index.html
+
+Wrong Answer Should Show Error Message
+    Input Text    answer    3
+    Click Button    submit
+    Wait Until Page Contain    Wrong answer!
+
+Wrong Answer Should Change The Question
+    ${first operand}=    Get Text From Element    ${FIRST OPERAND SPAN}
+    ${second operand}=    Get Text From Element    ${SECOND OPERAND SPAN}
+    Input Text    answer    3
+    Click Button    submit
+    ${new first operand}=     Get Text From Element    ${FIRST OPERAND SPAN}
+    ${new second operand}=    Get Text From Element    ${SECOND OPERAND SPAN}
+    Should Not Be Equal    ${first operand}    ${new first operand}
+    Should Not Be Equal    ${second operand}    ${new second operand}

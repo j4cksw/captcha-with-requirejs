@@ -1,0 +1,12 @@
+*** Settings ***
+Library           Selenium2Library
+Suite Setup       Open Browser    about:blank    ${BROWSER}
+Test Setup        Go To    ${APP URL}
+Suite Teardown    Close All Browsers
+Resource          variables.txt
+
+*** Test cases ***
+Correct Answer Should Show Success
+    Input Text    answer    2
+    Click Button    submit
+    Wait Until Page Contains    Success!
