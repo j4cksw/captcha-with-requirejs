@@ -1,8 +1,12 @@
-define('Captcha', [], function(){
-    return Captcha;
-});
+define('firstOperandGenerator', [], function(){
+    return new FirstOperandGenerator(Math.random);
+})
 
-require(['Captcha'], function(Captcha){
-    var captcha = new Captcha();
+define('captchaFactory', ['firstOperandGenerator'], function(firstOperandGenerator){
+    return new CaptchaFactory(firstOperandGenerator);
+})
+
+require(['captchaFactory'], function(captchaFactory){
+    var captcha = captchaFactory.generate();
     document.getElementById('firstOperand').innerHTML = captcha.getFirstOperand();
 });

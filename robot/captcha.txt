@@ -1,13 +1,17 @@
 *** Settings ***
 Library           Selenium2Library
+Library           Collections
 Suite Setup       Open Browser    about:blank    ${BROWSER}
 Test Setup        Go To    ${APP URL}
 Suite Teardown    Close All Browsers
 Resource          variables.txt
 
 *** Test cases ***
-First Operand Should Be Numerical String
-    Element Should Contain    ${FIRST OPERAND SPAN}    One
+First Operand Should Be One In Possible Values
+    ${POSSIBLES}=    Create List    One    Two    Three    Four    Five    Six    Seven    Eight
+    ...    Nine
+    ${first operand value}=    Get Text    ${FIRST OPERAND SPAN}
+    List Should Contain Value    ${POSSIBLES}    ${first operand value}
 
 Second Operand Should Be Number
     Element Should Contain    ${SECOND OPERAND SPAN}    1
